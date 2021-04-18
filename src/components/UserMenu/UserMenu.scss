@@ -1,0 +1,59 @@
+.user-menu {
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  @media screen and (min-width: 480px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.user-menu-info {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 480px) {
+    margin-bottom: 10px;
+  }
+}
+
+.user-menu-avatar {
+  margin-right: 5px;
+}
+
+.user-menu-email {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  color: blue;
+
+  @media screen and (min-width: 480px) {
+    margin-right: 10px;
+  }
+}
+
+.user-menu-button {
+  min-width: 80px;
+  padding: 5px;
+  border: 2px solid silver;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  background-color: white;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border: 2px solid skyblue;
+  }
+
+  &:active {
+    background-color: skyblue;
+  }
+}

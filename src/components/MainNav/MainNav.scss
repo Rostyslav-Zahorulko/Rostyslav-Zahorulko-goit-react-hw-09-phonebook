@@ -1,0 +1,20 @@
+.main-nav-list {
+  display: flex;
+}
+
+.main-nav-list-item:not(:last-child) {
+  margin-right: 20px;
+}
+
+.main-nav-list-item-link {
+  display: inline-block;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2a363b;
+}
+
+.main-nav-list-item-active-link {
+  color: #e84a5f;
+}
