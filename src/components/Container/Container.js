@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import './Container.scss';
 
-const Container = ({ children }) => <div className="container">{children}</div>;
+export default function Container({ children }) {
+  return <div className="container">{children}</div>;
+}
 
 Container.defaultProps = {
   children: 'Here must be some text...',
@@ -10,5 +12,3 @@ Container.defaultProps = {
 Container.propTypes = {
   children: PropTypes.node,
 };
-
-export default Container;

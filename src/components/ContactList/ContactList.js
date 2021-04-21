@@ -1,39 +1,28 @@
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ContactListItem from '../ContactListItem';
 import './ContactList.scss';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
 
-const ContactList = ({ contacts, onClick }) => (
-  <ul className="contact-list">
-    {contacts.map(({ name, number, id }) => (
-      <ContactListItem
-        name={name}
-        number={number}
-        key={id}
-        onClick={() => onClick(id)}
-      />
-    ))}
-  </ul>
-);
+export default function ContactList() {
+  const contacts = useSelector(contactsSelectors.getFilteredContacts);
+  const dispatch = useDispatch();
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+  const onClick = useCallback(
+    id => dispatch(contactsOperations.deleteContact(id)),
+    [dispatch],
+  );
 
-const mapStateToProps = state => ({
-  contacts: contactsSelectors.getFilteredContacts(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onClick: id => dispatch(contactsOperations.deleteContact(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+  return (
+    <ul className="contact-list">
+      {contacts.map(({ name, number, id }) => (
+        <ContactListItem
+          name={name}
+          number={number}
+          key={id}
+          onClick={() => onClick(id)}
+        />
+      ))}
+    </ul>
+  );
+}

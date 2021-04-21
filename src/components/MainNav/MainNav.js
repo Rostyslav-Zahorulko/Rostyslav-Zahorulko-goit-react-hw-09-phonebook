@@ -1,13 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import './MainNav.scss';
 import { authSelectors } from '../../redux/auth';
 import routes from '../../routes';
 
 const { home, contacts } = routes;
 
-const MainNav = ({ isAuthenticated }) => {
+export default function MainNav() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   return (
     <nav>
       <ul className="main-nav-list">
@@ -21,7 +22,7 @@ const MainNav = ({ isAuthenticated }) => {
             Home
           </NavLink>
         </li>
-        {isAuthenticated && (
+        {isLoggedIn && (
           <li className="main-nav-list-item">
             <NavLink
               className="main-nav-list-item-link"
@@ -35,14 +36,4 @@ const MainNav = ({ isAuthenticated }) => {
       </ul>
     </nav>
   );
-};
-
-MainNav.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.getIsAuthenticated(state),
-});
-
-export default connect(mapStateToProps, null)(MainNav);
+}

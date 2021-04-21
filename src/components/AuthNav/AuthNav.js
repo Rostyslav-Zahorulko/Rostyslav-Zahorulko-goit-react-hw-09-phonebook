@@ -4,7 +4,7 @@ import routes from '../../routes';
 
 const { register, login } = routes;
 
-const AuthNav = () => {
+export default function AuthNav() {
   return (
     <nav>
       <ul className="auth-nav-list">
@@ -29,6 +29,4 @@ const AuthNav = () => {
       </ul>
     </nav>
   );
-};
-
-export default AuthNav;
+}
