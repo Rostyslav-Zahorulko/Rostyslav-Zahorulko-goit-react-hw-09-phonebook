@@ -9,6 +9,7 @@ const {
   loginError,
   logoutSuccess,
   logoutError,
+  getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
 } = authActions;
@@ -46,11 +47,20 @@ const errorReducer = createReducer(null, {
   [getCurrentUserError]: (_, { payload }) => payload,
 });
 
+const isRefreshedReducer = createReducer(false, {
+  [getCurrentUserRequest]: () => false,
+  [getCurrentUserSuccess]: () => true,
+  [getCurrentUserError]: () => true,
+  [registerSuccess]: () => true,
+  [loginSuccess]: () => true,
+});
+
 const authReducer = combineReducers({
   user: userReducer,
   isLoggedIn: isLoggedInReducer,
   token: tokenReducer,
   error: errorReducer,
+  isRefreshed: isRefreshedReducer,
 });
 
 export default authReducer;
